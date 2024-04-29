@@ -8,13 +8,7 @@
 
     $db = new mysqli("localhost", "root", "", "auth");
 
-    //$d = mysqli_connect("localhost", "root", "", "auth");
-    //mysqli_query($d, "SELECT * FROM user");
 
-
-    //$q = "SELECT * FROM user WHERE email = '$email'";
-    //echo $q;
-    //$db->query($q);
 
     $q = $db->prepare("SELECT * FROM user WHERE email = ? LIMIT 1");
   
@@ -69,20 +63,13 @@ $password = $_REQUEST['password'];
 $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
 $db = new mysqli("localhost", "root", "", "auth");
-//
-//$q = "SELECT * FROM user WHERE email = '$email'";
-//echo $q
-//$db->query($q);
 
-//prepared statements
 $q = $db->prepare("SELECT * FROM user WHERE email = ? LIMIT 1");
 
 $q->bind_param("s", $email);
 
 $q->execute();
 $result = $q->get_result();
-//$d = mysqli_connect("localhost", "root", "", "auth");
-//mysqli_query($d, "SELECT * FROM user");
 
 
 
